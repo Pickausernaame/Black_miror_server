@@ -28,7 +28,7 @@ def foo():
             f.close()
             s.close()
         image = cv2.imread(fName)
-        """ Do some processing right here""""
+        """ Do some processing right here"""
         cv2.imshow('recv', image)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
