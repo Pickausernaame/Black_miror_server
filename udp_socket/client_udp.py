@@ -5,21 +5,21 @@ from socket import *
 
 cap = cv2.VideoCapture(0)
 
-FPS = cap.get(5)
+FPS = 30
 setFPS = 10
 ratio = int(FPS)/setFPS
-    
 host = "127.0.0.1"
 port = 4096
 addr = (host, port)
 buf = 1024
-
+print(FPS)
 def sendFile(fName):
     s = socket(AF_INET, SOCK_DGRAM)
     s.sendto(fName, addr)
     f = open(fName, "rb")
     data = f.read(buf)
     while data:
+	print("Data")
         if(s.sendto(data, addr)):
             data = f.read(buf)
     f.close()
@@ -35,7 +35,7 @@ def captureFunc():
             if count == ratio:
                 cv2.imwrite("img.jpg", frame)
                 sendFile("img.jpg")
-                count = 0            
+                count = 0
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         else:
