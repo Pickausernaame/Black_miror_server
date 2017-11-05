@@ -4,8 +4,7 @@ from flask import Flask, request, Response
 import jsonpickle
 import numpy as np
 import cv2
-import functions
-
+from functions import *
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -26,8 +25,10 @@ def test():
         if idx == max_area:
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
             roi_face = img[y:y + h, x:x + w]
-    cv2.imshow('img', roi_face)
-    cv2.waitKey(30)
+    if len(faces) != 0:
+        print("Faces on frame!")
+    else:
+        print("Faces not find!")
      #cv2.imwrite('example.png', roi_gray)
     # build a response dict to send back to client
     response = {'message': 'image received. size={}x{}'.format(img.shape[1], img.shape[0])
