@@ -7,7 +7,7 @@ import cv2
 
 if __name__ == "__main__":
 
-    host = 'http://localhost:5000'
+    host = 'http://169.254.106.131:5000'
     test_url = host + '/api/test'
 
     # Prepare headers for http request
@@ -21,7 +21,7 @@ if __name__ == "__main__":
         _, img_encoded = cv2.imencode('.jpg', gray)
         response = requests.post(test_url, data=img_encoded.tostring(), headers=headers)
         print(json.loads(response.text))
-	# cv2.imshow("Client.py image", gray)
+	"""cv2.imshow("Client.py image", gray)"""
 	if cv2.waitKey(1) & 0xFF == ord('q'):  # Условия выхода
             break
     cap.release()
