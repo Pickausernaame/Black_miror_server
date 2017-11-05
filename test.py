@@ -4,7 +4,7 @@
 import requests
 import json
 import cv2
-
+"""Script to test only imshow """
 if __name__ == "__main__":
 
     cap = cv2.VideoCapture(0)
